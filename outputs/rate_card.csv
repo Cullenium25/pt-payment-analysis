@@ -1,0 +1,22 @@
+code,service,description,total_services,avg_submitted_charge,avg_allowed_amount,avg_medicare_payment,pct_of_charge_paid
+97110,Therapeutic exercise,"Therapy procedure using exercise to develop strength, endurance, range of motion, and flexibility, each 15 minutes",64199433.0,69.14,22.79,17.54,25.4
+97530,Therapeutic activities,Therapy procedure using functional activities,44642444.0,74.55,31.54,24.42,32.8
+97112,Neuromuscular re-education,"Therapy procedure to re-educate brain-to-nerve-to-muscle function, each 15 minutes",34769851.0,72.64,27.07,20.93,28.8
+97140,Manual therapy,"Therapy procedure using manual technique, each 15 minutes",29271918.0,67.8,20.62,15.89,23.4
+97116,Gait training,"Therapy procedure for walking training, each 15 minutes",4993332.0,56.5,21.9,17.06,30.2
+97535,Self-care / home management training,"Training for self-care or home management, each 15 minutes",3943313.0,62.98,25.39,19.68,31.3
+97150,Group therapy,Therapy procedure in a group setting,2706504.0,51.43,13.61,10.54,20.5
+97161,PT evaluation (low complexity),"Evaluation for physical therapy, typically 20 minutes",1712693.0,192.71,99.47,72.76,37.8
+97113,Aquatic therapy,"Therapy procedure using water pool to exercises, each 15 minutes",1570017.0,73.17,27.65,21.26,29.1
+97162,PT evaluation (moderate complexity),"Evaluation for physical therapy, typically 30 minutes",1504749.0,185.48,99.21,72.81,39.3
+97035,Ultrasound,"Application of ultrasound, each 15 minutes",1063938.0,37.95,10.51,8.09,21.3
+97016,Vasopneumatic compression,Application of blood vessel compression device,988655.0,45.24,8.55,6.62,14.6
+97164,PT re-evaluation,"Re-evaluation for physical therapy, typically 20 minutes",533888.0,122.95,68.55,52.52,42.7
+97032,Electrical stimulation,"Application of electrical stimulation with therapist present, each 15 minutes",511301.0,40.72,11.44,8.85,21.7
+97012,Mechanical traction,Application of mechanical traction,429700.0,41.99,10.8,8.3,19.8
+97124,Massage,"Therapy procedure using massage, each 15 minutes",339542.0,59.41,25.26,19.58,33.0
+97750,Functional capacity test,"Test or measurement for functional capacity, each 15 minutes",334398.0,90.81,28.67,22.01,24.2
+97163,PT evaluation (high complexity),"Evaluation for physical therapy, typically 45 minutes",284028.0,197.25,98.99,73.17,37.1
+97018,Hot wax bath,Application of hot wax bath,160796.0,33.23,4.0,3.09,9.3
+97542,Wheelchair assessment,"Evaluation for wheelchair, each 15 minutes",129959.0,57.94,23.75,18.37,31.7
+97022,Whirlpool therapy,Application of whirlpool therapy,127888.0,48.41,11.72,9.03,18.6
