@@ -150,6 +150,13 @@ def strip_spines(ax) -> None:
         spine.set_visible(False)
 
 
+def strip_xaxis(ax) -> None:
+    """Drop the x scale. Each bar carries its own value label instead."""
+    ax.set_xticks([])
+    ax.set_xlabel("")
+    ax.tick_params(axis="x", length=0)
+
+
 # --------------------------------------------------------------------------
 # Figures
 # --------------------------------------------------------------------------
@@ -168,8 +175,12 @@ def fig_rate_card(rate: pd.DataFrame) -> None:
                        fontsize=9)
     for i, r in enumerate(top.itertuples()):
         ax.text(r.avg_allowed_amount + 1.5, i, f"${r.avg_allowed_amount:,.2f}",
-                va="center", fontsize=8)
-    ax.set_xlabel("Dollars per service")
+                va="center", fontsize=8, weight="bold")
+        # The paid amount goes inside its own bar so it cannot collide with the
+        # allowed label sitting at the end of the longer bar.
+        ax.text(r.avg_medicare_payment - 1.5, i, f"${r.avg_medicare_payment:,.2f}",
+                va="center", ha="right", fontsize=7, color="white")
+    strip_xaxis(ax)
     ax.set_title("Medicare PT rate card: national average, office setting (2024)\n"
                  "Top 12 codes by volume", fontsize=13, weight="bold")
     ax.legend(loc="lower right", fontsize=9, frameon=False)
@@ -187,10 +198,13 @@ def fig_payment_index(idx: pd.DataFrame, code: str = "97110") -> None:
     ax.axvline(100, color="black", ls="--", lw=1.5, label="National average = 100")
     ax.set_yticks(range(len(d)))
     ax.set_yticklabels(d.state, fontsize=8)
-    ax.set_xlabel("Payment index (state allowed amount ÷ national average, same code)")
+    for i, r in enumerate(d.itertuples()):
+        ax.text(r.payment_index + 0.6, i, f"{r.payment_index:.0f}",
+                va="center", fontsize=7)
+    strip_xaxis(ax)
     ax.set_title(f"Medicare payment index by state: {code} - {d.service.iloc[0]}",
                  fontsize=12, weight="bold")
-    ax.legend(loc="lower right", frameon=False)
+    ax.legend(loc="lower left", frameon=False)
     strip_spines(ax)
     fig.tight_layout()
     fig.savefig(FIG / f"02_payment_index_{code}.png", dpi=150)
@@ -226,11 +240,11 @@ def fig_state_map(util: pd.DataFrame) -> None:
     ax.set_yticklabels(d.state, fontsize=10)
     for i, r in enumerate(d.itertuples()):
         ax.text(r.services * 1.01, i, f"{r.services/1e6:.1f}M", va="center", fontsize=8)
-    ax.set_xlabel("Total PT services (all 21 codes, office setting, 2024)")
-    ax.set_title("PT service volume by state, top 20\n"
+    ax.set_title("PT service volume by state, top 20 (all 21 codes, office setting, 2024)\n"
                  "Volume concentration, not payment rate, drives revenue",
                  fontsize=13, weight="bold")
     strip_spines(ax)
+    strip_xaxis(ax)
     fig.tight_layout()
     fig.savefig(FIG / "04_volume_by_state.png", dpi=150)
     plt.close(fig)
