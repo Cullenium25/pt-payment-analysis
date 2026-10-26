@@ -109,12 +109,15 @@ Comparing each state's allowed amount for a code against the national average fo
 
 ![Variation source](figures/03_variation_source.png)
 
-Alaska is the only genuine outlier at a payment index of **132** (allowed $29.74 vs a $22.44 national
-average). Every other state sits between **92 and 109**, a ~17% band. Meanwhile Alaska's *submitted
-charges* are $96.85, the highest in the country and triple the lowest state's $32.25.
+Alaska is the only genuine outlier at a payment index of **132**: its allowed amount of $29.74 runs 32%
+above the average state rate. Every other state sits between **91.6 and 109.1**, a band of about 17
+index points. Its *submitted charge* of $96.85 is second only to New Jersey's $98.99, against a state
+low of $50.84 in Idaho.
 
-For 97110 therapeutic exercise, a state showing a high payment index is almost always showing a
-billing artifact rather than a real rate advantage. The standardized column is the one to compare on.
+That payment-index gap is mostly geographic price adjustment rather than billing behaviour:
+standardizing the allowed amount collapses the 91.6 to 132 spread to **97 to 104**. Billing behaviour
+is what shows up in the submitted charges, where the same code varies 2.06x across states, not in the
+payment index. The standardized column is the one to compare on.
 
 ![Payment index](figures/02_payment_index_97110.png)
 
@@ -176,9 +179,5 @@ figures/                 charts
 `data/pt_geo_2024.csv` is committed on purpose: it is small enough to ship and lets a reviewer run
 `build_db.py` and `analyze.py` without the 42 MB download.
 
-## One implementation note
-
-`HCPCS_Cd` must be read as a **string**, not a number. Numeric inference turns `97110` into `97110`
-and silently strips leading zeros from codes like `0001U`, breaking every downstream filter and
-join. This bit me once while building the pipeline; the scripts now pin the identifier columns to
-text on both the CSV read and the CSV write.
+`HCPCS_Cd` is pinned to text on read and write, because it is an identifier rather
+than a number.
